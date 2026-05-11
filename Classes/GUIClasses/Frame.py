@@ -8,7 +8,6 @@ class Frame(GuiBase):
 
     def render(self, screen, ScreenSize):
         super().render(ScreenSize)
-        print(self.AbsolutePos)
         py.draw.rect(
             screen,
             self.BackgroundColor,

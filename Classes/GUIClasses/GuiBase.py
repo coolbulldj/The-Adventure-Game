@@ -7,6 +7,7 @@ class GuiBase:
         self.AbsoluteSize = []
         self.UIAspectRatio = None
         self.BackgroundColor = (0, 0, 255)
+        self.Visible = True
 
     def render(self, screenSize):
         self.AbsoluteSize = [self.Size[0] * screenSize[0], self.Size[1] * screenSize[1]]

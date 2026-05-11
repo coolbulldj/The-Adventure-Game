@@ -1,17 +1,24 @@
-
+from Classes.CoreClasses.EventClass import Event
+from Modules.Core.ButtonHandler import AddButton
 
 class Button():
     def __init__(self, pos, size):
-        self.pos = pos
-        self.size = size
+        self.AbsolutePos = size
+        self.AbsoluteSize = pos
+        self.MouseButton1Up = Event()
+        self.MouseButton1Down = Event()
+        self.MouseButton2Up = Event()
+        self.MouseButton2Down = Event()
+        AddButton(self)
+
 
     def check_mousehit(self, mouseHit):
         #bounds of the button
-        lx, hx = 0,0 #low x, high x
-        ly, hy = 0,0 #low y, high y
+        lx, hx = self.AbsolutePos[0], self.AbsolutePos[0] + self.AbsoluteSize[0] #low x, high x
+        ly, hy = self.AbsolutePos[1], self.AbsolutePos[1] + self.AbsoluteSize[1]  #low y, high y
 
         mx, my = mouseHit
-
+        #print("checking mouse hit:", mx, my, "bounding x(s) are:", lx, hx)
         if mx < lx or hx < mx:
             return False
         elif my < ly or hy < my:
