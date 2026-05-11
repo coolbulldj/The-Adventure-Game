@@ -1,3 +1,3 @@
 # The-Adventure-Game
 
-This is game
+Based on the planet 
