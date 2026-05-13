@@ -6,7 +6,6 @@ from Modules.Core.FontCache import GetFont
 seperator = " "  # allows for array of text lines to be combined
 
 
-
 def GetScaledTextSize(text: str, font: ft.SysFont, abSize):
     if not text or text == "":
         raise ValueError("text can't be none or ''")
@@ -33,6 +32,7 @@ def GetScaledTextSize(text: str, font: ft.SysFont, abSize):
     # Return an integer font size that will fit
     new_size = max(1, int(base_size * scale))
     return new_size
+
 
 def DetermineWrap(
     text: str, font: ft.SysFont, absoluteSize: tuple
@@ -90,6 +90,7 @@ def DetermineWrap(
     # Fallback: no wrap found (shouldn't happen), return original as single line
     return [text]
 
+
 class TextLabel(GuiBase):
     def __init__(self):
         super().__init__()
@@ -102,18 +103,19 @@ class TextLabel(GuiBase):
 
     def render(self, screen, screenSize):
         super().render(screenSize)
-        #draw screen frame
-        py.draw.rect(
-            screen,
-            self.BackgroundColor,
-            (
-                self.AbsolutePos[0],
-                self.AbsolutePos[1],
-                self.AbsoluteSize[0],
-                self.AbsoluteSize[1],
-            ),
-        )
-        #draw text 
+        # draw screen frame
+        if self.BackgroundTransparency != 1:
+            py.draw.rect(
+                screen,
+                self.BackgroundColor,
+                (
+                    self.AbsolutePos[0],
+                    self.AbsolutePos[1],
+                    self.AbsoluteSize[0],
+                    self.AbsoluteSize[1],
+                ),
+            )
+        # draw text
         ab_xs, ab_ys = self.AbsoluteSize
         pos_x, pos_y = self.AbsolutePos
         wrapLines = [self.Text]
@@ -168,8 +170,3 @@ class TextLabel(GuiBase):
             x = pos_x + (ab_xs - fx) / 2
             y = start_y + index * line_height
             font.render_to(screen, (x, y), line, fgcolor=self.TextColor, bgcolor=None)
-
-        
-
-        
-

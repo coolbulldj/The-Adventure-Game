@@ -1,7 +1,11 @@
 import Modules.Gameloop.UIHandler as UIHandler
 
 
-def run(screen, screenSize):
-    UIHandler.Background.render(screen, screenSize)
-    UIHandler.Title.render(screen, screenSize)
-    UIHandler.PlayB.render(screen, screenSize)
+countDown = 0
+
+def run(deltaTime:float):
+    global countDown
+    countDown += deltaTime
+
+    if countDown >= 3:
+        UIHandler.ButtonsFrame.Visible = False

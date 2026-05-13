@@ -6,12 +6,15 @@ ErrorImagePath = "Assets\Images\ImagePathFailure.png"
 
 CachedImages = {}
 
-def getImage(ImagePath:str):
+def getImage(ImagePath: str):
     if ImagePath not in CachedImages:
-        if ImagePath == "": #in future implement checks to make it so that it check whether image path points correctly
+        if (
+            ImagePath == ""
+        ):  # in future implement checks to make it so that it check whether image path points correctly
             ImagePath = ErrorImagePath
         CachedImages[ImagePath] = py.image.load(ImagePath).convert_alpha()
     return CachedImages[ImagePath]
+
 
 class Image(GuiBase):
     def __init__(self):
@@ -19,22 +22,21 @@ class Image(GuiBase):
         self.ImagePath = ""
         self.Image = getImage(self.ImagePath)
 
-
     def __setattr__(self, name, value):
         super().__setattr__(name, value)
 
         if name == "ImagePath":
-            #Update image
+            # Update image
             self.Image = getImage(value)
 
     def render(self, screen, screenSize):
-        if super().render(screenSize): #this means the super is invisible
-            #print(self.Visible)
+        if super().render(screenSize):  # this means the super is invisible
+            # print(self.Visible)
             return
 
         ab_xs, ab_ys = self.AbsoluteSize
 
-        #Draw backing frmae
+        # Draw backing frmae
         py.draw.rect(
             screen,
             self.BackgroundColor,
@@ -45,7 +47,6 @@ class Image(GuiBase):
                 self.AbsoluteSize[1],
             ),
         )
-
 
         # Resize the original image to a new width of 100 and height of 50
         resized_image = py.transform.scale(self.Image, (ab_xs, ab_ys))

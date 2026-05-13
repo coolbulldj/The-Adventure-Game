@@ -1,36 +1,28 @@
 # modules
-import uuid
 import pygame as py
 import sys
+import time
 
 
 # Classes
 
-#Core Functions
+# Core Functions
 from Modules.Core.ButtonHandler import CheckButtons
+from Modules.Core.UIService import RenderAssets
 
+py.init()
+screen = py.display.set_mode((800, 450), py.RESIZABLE)
 
 Running = True
 
-py.init()
-
-screen = py.display.set_mode((800, 450), py.RESIZABLE)
-
 from gameloop import run
 
+FPS_CAP = 60
+LastFrameTime = time.time()
+ElapedTime = 0
+
 while Running:
-    sx, sy = screen.get_size()
-    screenSize = [sx, sy]  # convert tuple to array
-
-    screen.fill((0, 0, 0))
-
-    # py.draw.rect(screen, (255,0,0), (10, 10, 0, 10))
-   # CheckButtons()
-    run(screen, screenSize)
-    py.display.flip()
-
-    # result = mainLoop()
-
+    #Input processing
     for event in py.event.get():
         if event.type == py.QUIT:
             py.quit()
@@ -39,5 +31,19 @@ while Running:
         if event.type == py.MOUSEBUTTONUP:
             CheckButtons(py.mouse.get_pos(), True, 1)
 
-    # if not result:
-    #    Running = False
+    #Calculate Delta time
+    currentTime = time.time()
+    dt = currentTime - LastFrameTime
+    ElapedTime += dt
+    LastFrameTime = currentTime
+    time.sleep(max(1 / FPS_CAP - dt, 0))
+
+    #run game logic
+    run(dt)
+
+    #Render Screen
+    screen.fill((0, 0, 0))
+    sx, sy = screen.get_size()
+    screenSize = [sx, sy]  # convert tuple to array
+    RenderAssets(screen, screenSize) #renders all gui assets
+    py.display.flip()

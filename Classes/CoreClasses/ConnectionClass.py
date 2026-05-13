@@ -5,7 +5,9 @@ class Connection:
 
     def Disconnect(self):
         if not self._Connected:
-            print("WARNING: this Connection has already been disconnected consider deleting held variable to prevent memory leak")
+            print(
+                "WARNING: this Connection has already been disconnected consider deleting held variable to prevent memory leak"
+            )
             return
         self._Connected = False
         self._DisconnectMethod()
