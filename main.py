@@ -8,6 +8,7 @@ import time
 
 # Core Functions
 from Modules.Core.ButtonHandler import CheckButtons
+from Modules.Core.CoreGUI.ScrollHandler import triggerScrollMotion
 from Modules.Core.UIService import RenderAssets
 
 py.init()
@@ -23,13 +24,18 @@ ElapedTime = 0
 
 while Running:
     #Input processing
+    mousePos = py.mouse.get_pos()
     for event in py.event.get():
         if event.type == py.QUIT:
             py.quit()
             sys.exit()
             Running = False
-        if event.type == py.MOUSEBUTTONUP:
-            CheckButtons(py.mouse.get_pos(), True, 1)
+        elif event.type == py.MOUSEBUTTONUP:
+            CheckButtons(mousePos, True, event.button)
+        elif event.type == py.MOUSEBUTTONDOWN:
+            CheckButtons(mousePos, False, event.button)
+        elif event.type == py.MOUSEWHEEL:
+            triggerScrollMotion([event.x, event.y])
 
     #Calculate Delta time
     currentTime = time.time()
