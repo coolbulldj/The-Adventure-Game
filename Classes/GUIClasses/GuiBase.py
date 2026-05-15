@@ -1,5 +1,5 @@
 from Modules.Core.UIService import addGuiAsset, destoryGuiAsset
-
+from Modules.Core.ErrorHandler import ThrowError, ThrowWarning
 
 class GuiBase:
     def __init__(self):
@@ -11,34 +11,45 @@ class GuiBase:
         self.UIAspectRatio = None
         self.BackgroundColor = (0, 0, 255)
         self.BackgroundTransparency = 0
+        self.zIndex = 1
         self.Visible = True
 
         self.Parent = "game"
         self.Children = []
         self._GUIKey = addGuiAsset(self)
 
-    def setParent(self, parent):
+    def __setattr__(self, name, value):
+        if name == "Parent":
+            self._setParent(value)
+        #This has to happen after _setParent as _setParent has to remove children from the previous parent
+        super.__setattr__(self, name, value)
+
+    def _setParent(self, parent):
+        if parent == "game":
+            return
+
         if self.Parent != "game":
             #means object had a parent
-            self.Parent._removeChild(self)
+            self.Parent._removeChild(self._GUIKey)
 
-        #set parent
-        self.Parent = parent
         #add child
-        parent._addChild(self)
-        
+        parent._addChild(self._GUIKey)
 
     def _addChild(self, child):
         self.Children.append(child)
 
     def _removeChild(self, child):
+        if child not in self.Children:
+            ThrowWarning(f"Warning attempting to remove a child from a parent while child isn't a child of said parent; ClassName:{type(self)}")
+            return
+
         self.Children.remove(child)
 
-    def render(self, screenSize):
+    def render(self, screenSize, positionOffset=[0,0]):
         self.AbsoluteSize = [self.Size[0] * screenSize[0], self.Size[1] * screenSize[1]]
         self.AbsolutePos = [
-            self.Pos[0] * screenSize[0] - self.AbsoluteSize[0] * self.AnchorPoint[0],
-            self.Pos[1] * screenSize[1] - self.AbsoluteSize[1] * self.AnchorPoint[1],
+            self.Pos[0] * screenSize[0] - self.AbsoluteSize[0] * self.AnchorPoint[0] + positionOffset[0],
+            self.Pos[1] * screenSize[1] - self.AbsoluteSize[1] * self.AnchorPoint[1] + positionOffset[1],
         ]
 
     def destroy(self):

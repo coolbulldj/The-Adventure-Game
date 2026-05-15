@@ -101,8 +101,8 @@ class TextLabel(GuiBase):
         self.Text = "Hello World"
         self.Font = "monospace"
 
-    def render(self, screen, screenSize):
-        super().render(screenSize)
+    def render(self, screen, screenSize, posOffset=[0,0]):
+        super().render(screenSize, posOffset)
         # draw screen frame
         if self.BackgroundTransparency != 1:
             py.draw.rect(

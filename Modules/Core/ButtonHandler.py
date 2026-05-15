@@ -13,6 +13,7 @@ def AddButton(button):
 def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int):
     for button in buttons.values():
         if not button.check_mousehit(mousePositon):
+            button.ClickOff._FireEvent()
             continue
         if MouseUp:
             if MouseCode == 1:

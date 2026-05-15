@@ -29,8 +29,8 @@ class Image(GuiBase):
             # Update image
             self.Image = getImage(value)
 
-    def render(self, screen, screenSize):
-        if super().render(screenSize):  # this means the super is invisible
+    def render(self, screen, screenSize, posOffset=[0,0]):
+        if super().render(screenSize, posOffset):  # this means the super is invisible
             # print(self.Visible)
             return
 

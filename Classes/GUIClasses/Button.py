@@ -10,6 +10,7 @@ class Button:
         self.MouseButton1Down = Event()
         self.MouseButton2Up = Event()
         self.MouseButton2Down = Event()
+        self.ClickOff = Event()
         AddButton(self)
 
     def check_mousehit(self, mouseHit):
