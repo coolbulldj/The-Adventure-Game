@@ -6,6 +6,7 @@ ErrorImagePath = "Assets\Images\ImagePathFailure.png"
 
 CachedImages = {}
 
+
 def getImage(ImagePath: str):
     if ImagePath not in CachedImages:
         if (
@@ -29,7 +30,7 @@ class Image(GuiBase):
             # Update image
             self.Image = getImage(value)
 
-    def render(self, screen, screenSize, posOffset=[0,0]):
+    def render(self, screen, screenSize, posOffset=[0, 0]):
         if super().render(screenSize, posOffset):  # this means the super is invisible
             # print(self.Visible)
             return

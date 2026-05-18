@@ -8,8 +8,10 @@ def addScrollAsset(asset):
     ScrollAssets[key] = asset
     return key
 
+
 def destoryScrollAsset(key):
     ScrollAssets[key] = None
+
 
 def triggerScrollMotion(motionData):
     for asset in ScrollAssets.values():

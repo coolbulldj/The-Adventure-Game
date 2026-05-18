@@ -8,6 +8,7 @@ countDown = 0
 
 # UIHandler.PlayB.Button.MouseButton1Up.Connect(hideFrame)
 
-def run(deltaTime:float):
+
+def run(deltaTime: float):
     global countDown
     countDown += deltaTime

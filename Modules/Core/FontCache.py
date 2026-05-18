@@ -13,7 +13,7 @@ def GetFont(Name) -> ft.SysFont:
         fontPath = customFonts[Name]
 
     if Name not in _fontCache.keys():
-        #print("creating new font cache instance")
+        # print("creating new font cache instance")
         _fontCache[Name] = ft.Font(fontPath, 1)
 
     return _fontCache[Name]

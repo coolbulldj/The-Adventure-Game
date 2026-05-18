@@ -1,8 +1,9 @@
 from GUIClasses.TextButton import TextButton
 
 
-def is_valid_chr(n): #basically 
+def is_valid_chr(n):  # basically
     return isinstance(n, int) and 0 <= n <= 0x10FFFF
+
 
 class Textbox(TextButton):
     def __init__(self):
@@ -30,11 +31,11 @@ class Textbox(TextButton):
             return
 
         if keycode == 8:
-            #this is on an backspace key press
+            # this is on an backspace key press
             self.Text = self.Text[:-1]
             return
         if keycode == 13:
-            #this is on an enter key press
+            # this is on an enter key press
             self.stopTyping(self)
             return
 

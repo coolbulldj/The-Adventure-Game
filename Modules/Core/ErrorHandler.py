@@ -3,10 +3,12 @@ import traceback
 
 ErrorStatus = False
 
+
 def ThrowWarning(WarningString):
     print(" ")
     print(WarningString, traceback.extract_stack())
     print(" ")
+
 
 def ThrowError(ErrorString):
     global ErrorStatus
@@ -14,6 +16,7 @@ def ThrowError(ErrorString):
     print(ErrorString, traceback.extract_stack())
     print(" ")
     ErrorStatus = True
+
 
 def GetErrorStatus():
     return ErrorStatus

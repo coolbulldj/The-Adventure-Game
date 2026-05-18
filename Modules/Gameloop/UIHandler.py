@@ -5,9 +5,9 @@ from Classes.GUIClasses.TextButton import TextButton
 from Classes.GUIClasses.ImageLabel import Image
 from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
 
-#THIS MODULE SHOULD ONLY BE USED FOR THE CREATION OF ASSETS, NOT FOR FUNCTIONALITY!
+# THIS MODULE SHOULD ONLY BE USED FOR THE CREATION OF ASSETS, NOT FOR FUNCTIONALITY!
 
-#Menu
+# Menu
 # Background = Image()
 # Background.Size = [1, 1]
 # Background.ImagePath = "Assets\Images\Backgrounds\RedFrontierGamebackground.png"
@@ -60,7 +60,3 @@ from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
 
 TestScrollFrame = ScrollingFrame()
 TestScrollFrame._CanvasSize = [1, 1]
-
-
-
-

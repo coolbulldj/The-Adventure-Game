@@ -6,11 +6,10 @@ class Frame(GuiBase):
     def __init__(self):
         super().__init__()
 
-    def render(self, screen, ScreenSize, posOffset=[0,0]):
+    def render(self, screen, ScreenSize, posOffset=[0, 0]):
         super().render(ScreenSize, posOffset)
 
-
-        if self.BackgroundTransparency  == 1:
+        if self.BackgroundTransparency == 1:
             return
 
         py.draw.rect(
