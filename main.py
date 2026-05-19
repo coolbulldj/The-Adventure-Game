@@ -5,7 +5,7 @@ import time
 # Classes
 
 # Core Functions
-from Modules.Core.ButtonHandler import CheckButtons
+from Modules.Core.CoreGUI.ButtonHandler import CheckButtons
 from Modules.Core.CoreGUI.ScrollHandler import triggerScrollMotion
 from Modules.Core.UIService import RenderAssets
 

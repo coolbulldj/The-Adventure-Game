@@ -4,6 +4,7 @@ from Classes.GUIClasses.TextLabel import TextLabel
 from Classes.GUIClasses.TextButton import TextButton
 from Classes.GUIClasses.ImageLabel import Image
 from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
+from Classes.GUIClasses.NonRendered.UIListLayout import UIListLayout
 
 # THIS MODULE SHOULD ONLY BE USED FOR THE CREATION OF ASSETS, NOT FOR FUNCTIONALITY!
 
@@ -60,3 +61,22 @@ from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
 
 TestScrollFrame = ScrollingFrame()
 TestScrollFrame._CanvasSize = [1, 1]
+<<<<<<< Updated upstream
+=======
+
+TestLayout = UIListLayout()
+TestLayout.Parent = TestScrollFrame
+
+testFrames = 10
+
+for i in range(testFrames):
+    TestFrame = Frame()
+    TestFrame.Size = [0.8, 0.1]
+    color = i/testFrames
+    TestFrame.BackgroundColor = (color*255, color*255, color*255)
+    TestFrame.Parent = TestScrollFrame
+
+
+
+
+>>>>>>> Stashed changes

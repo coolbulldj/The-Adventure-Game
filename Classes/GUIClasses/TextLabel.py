@@ -1,7 +1,7 @@
 import pygame as py
 from pygame import freetype as ft
 from Classes.GUIClasses.GuiBase import GuiBase
-from Modules.Core.FontCache import GetFont
+from Modules.Core.CoreGUI.FontCache import GetFont
 
 seperator = " "  # allows for array of text lines to be combined
 

@@ -1,5 +1,7 @@
-import pygame
+a = [1, 2, 3] 
+b = [1, 2, 3]
 
+<<<<<<< Updated upstream
 pygame.init()
 SCREEN = pygame.display.set_mode((800, 600))
 CLOCK = pygame.time.Clock()
@@ -194,3 +196,6 @@ while running:
     CLOCK.tick(60)
 
 pygame.quit()
+=======
+print(a + b)
+>>>>>>> Stashed changes

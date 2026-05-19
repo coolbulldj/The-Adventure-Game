@@ -56,9 +56,16 @@ class ScrollingFrame(GuiBase):
         )
 
         ranNum = random.randint(1, 2)
+<<<<<<< Updated upstream
 
         # render y scrolling bar
         # scrolling bar background
+=======
+        
+
+        #render y scrolling bar
+        #scrolling bar background
+>>>>>>> Stashed changes
         py.draw.rect(
             screen,
             self.ScrollingBackgroundColor,

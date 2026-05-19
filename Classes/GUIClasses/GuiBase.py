@@ -1,4 +1,4 @@
-from Modules.Core.UIService import addGuiAsset, destoryGuiAsset
+from Modules.Core.CoreGUI.GUIElementsList import addGuiAsset, destoryGuiAsset
 from Modules.Core.ErrorHandler import ThrowError, ThrowWarning
 
 
@@ -9,14 +9,13 @@ class GuiBase:
         self.AnchorPoint = [0.5, 0.5]  # determines where the position
         self.AbsolutePos = []
         self.AbsoluteSize = []
-        self.UIAspectRatio = None
         self.BackgroundColor = (0, 0, 255)
         self.BackgroundTransparency = 0
         self.zIndex = 1
         self.Visible = True
 
         self.Parent = "game"
-        self.Children = []
+        self.Children: list[GuiBase] = []
         self._GUIKey = addGuiAsset(self)
 
     def __setattr__(self, name, value):
@@ -41,9 +40,13 @@ class GuiBase:
 
     def _removeChild(self, child):
         if child not in self.Children:
+<<<<<<< Updated upstream
             ThrowWarning(
                 f"Warning attempting to remove a child from a parent while child isn't a child of said parent; ClassName:{type(self)}"
             )
+=======
+            ThrowWarning(f"Warning attempting to remove a child from a parent while child isn't a child of said parent; ClassName:{type(self).__name__}")
+>>>>>>> Stashed changes
             return
 
         self.Children.remove(child)

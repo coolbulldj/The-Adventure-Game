@@ -1,5 +1,5 @@
 from Classes.CoreClasses.EventClass import Event
-from Modules.Core.ButtonHandler import AddButton
+from Modules.Core.CoreGUI.ButtonHandler import AddButton
 
 
 class Button:
