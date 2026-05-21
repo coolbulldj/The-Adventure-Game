@@ -53,3 +53,4 @@ class Image(GuiBase):
         resized_image = py.transform.scale(self.Image, (ab_xs, ab_ys))
 
         screen.blit(resized_image, self.AbsolutePos)
+        self.renderChildren(screen)

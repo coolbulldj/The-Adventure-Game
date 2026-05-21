@@ -32,6 +32,8 @@ class UIStructure():
     def _removeChild(self, _):
         ThrowWarning("Remove child method was performed on a UI Structure this class doesn't allow children")
 
+    def renderChildren(self):
+        ThrowError("Render children method was performed on a UI Structure this class doesn't allow children therfore can't render children")
 
     def render(self):
         pass

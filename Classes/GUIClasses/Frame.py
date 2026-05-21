@@ -22,3 +22,4 @@ class Frame(GuiBase):
                 self.AbsoluteSize[1],
             ),
         )
+        self.renderChildren(screen)

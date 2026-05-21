@@ -7,6 +7,7 @@ import time
 # Core Functions
 from Modules.Core.CoreGUI.ButtonHandler import CheckButtons
 from Modules.Core.CoreGUI.ScrollHandler import triggerScrollMotion
+from Modules.Core.CoreGUI.TextboxHandler import triggerTyping
 from Modules.Core.UIService import RenderAssets
 
 # Setup Game
@@ -34,7 +35,16 @@ while Running:
             CheckButtons(mousePos, False, event.button)
         elif event.type == py.MOUSEWHEEL:
             triggerScrollMotion([event.x, event.y])
-
+        
+    # for key, activated in :
+    #     if not activated:
+    #         continue
+    #     triggerTyping(key)
+   
+    if event.type == py.KEYUP:
+        print("key is down:", event.key)
+        triggerTyping(event.key)
+        # print("Key released:", event.key)
     # Calculate Delta time
     # (the time the program took to run, this useful for calculating animations, lerps, tweens, etc)
     currentTime = time.time()

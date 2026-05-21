@@ -37,7 +37,7 @@ class ScrollingFrame(GuiBase):
         newX = clamp(newX, 0, self._CanvasSize[0])
         newY = clamp(newY, 0, self._CanvasSize[1])
 
-        print("he got motion motherfucker", self._CanvasPos)
+        #print("he got motion motherfucker", self._CanvasPos)
 
         self._CanvasPos = [newX, newY]
 
@@ -55,17 +55,15 @@ class ScrollingFrame(GuiBase):
             ),
         )
 
-        ranNum = random.randint(1, 2)
-<<<<<<< Updated upstream
+        #render children
+        self.renderChildren(screen)
 
-        # render y scrolling bar
-        # scrolling bar background
-=======
+
+        ranNum = random.randint(1, 2)
         
 
         #render y scrolling bar
         #scrolling bar background
->>>>>>> Stashed changes
         py.draw.rect(
             screen,
             self.ScrollingBackgroundColor,

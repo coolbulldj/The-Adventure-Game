@@ -170,3 +170,5 @@ class TextLabel(GuiBase):
             x = pos_x + (ab_xs - fx) / 2
             y = start_y + index * line_height
             font.render_to(screen, (x, y), line, fgcolor=self.TextColor, bgcolor=None)
+
+        self.renderChildren(screen)
