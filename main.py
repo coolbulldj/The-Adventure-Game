@@ -7,8 +7,8 @@ import time
 # Core Functions
 from Modules.Core.CoreGUI.ButtonHandler import CheckButtons
 from Modules.Core.CoreGUI.ScrollHandler import triggerScrollMotion
-from Modules.Core.CoreGUI.TextboxHandler import triggerTyping
 from Modules.Core.UIService import RenderAssets
+import Modules.Core.InputService as InputService
 
 # Setup Game
 py.init()
@@ -22,6 +22,14 @@ LastFrameTime = time.time()
 ElapedTime = 0
 
 while Running:
+    # Calculate Delta time
+    # (the time the program took to run, this useful for calculating animations, lerps, tweens, etc)
+    currentTime = time.time()
+    dt = currentTime - LastFrameTime
+    ElapedTime += dt
+    LastFrameTime = currentTime
+    time.sleep(max(1 / FPS_CAP - dt, 0))
+
     # Input processing
     mousePos = py.mouse.get_pos()
     for event in py.event.get():
@@ -36,22 +44,15 @@ while Running:
         elif event.type == py.MOUSEWHEEL:
             triggerScrollMotion([event.x, event.y])
         
-    # for key, activated in :
-    #     if not activated:
-    #         continue
-    #     triggerTyping(key)
-   
-    if event.type == py.KEYUP:
-        print("key is down:", event.key)
-        triggerTyping(event.key)
-        # print("Key released:", event.key)
-    # Calculate Delta time
-    # (the time the program took to run, this useful for calculating animations, lerps, tweens, etc)
-    currentTime = time.time()
-    dt = currentTime - LastFrameTime
-    ElapedTime += dt
-    LastFrameTime = currentTime
-    time.sleep(max(1 / FPS_CAP - dt, 0))
+        #Uses input service here as 
+        # 1. it allows more customizality 
+        # 2.it allows keys to be an looped through as an array
+        elif event.type == py.KEYDOWN:
+            InputService.KeyDown(event.key)
+        elif event.type == py.KEYUP:
+            InputService.KeyUp(event.key)
+    InputService.Tick(dt)
+
 
     # run game logic
     run(dt)

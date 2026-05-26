@@ -5,12 +5,17 @@ from Modules.Core.CoreGUI.GUIElementsList import GuiAssets
 class UIListLayout(UIStructure):
     def __init__(self):
         super().__init__()
-        self.Padding = -0.01
+        self.Padding = 0.005
         self.AlignmentDirection = "Vertical"
 
     def render(self):
         if self.Parent == "game":
             return
+        realPadding = self.Padding
+
+        if realPadding == 0:
+            realPadding = -0.005 
+            #do this so there isn't any gaps between gui assets due to rounding when the elements get rendered
         currentOffset = 0
         for childKey in self.Parent.Children:
             asset = GuiAssets[childKey]
@@ -18,5 +23,5 @@ class UIListLayout(UIStructure):
             if not isinstance(asset, GuiBase):
                 continue
             asset.Pos = [self.Parent.Pos[0], asset.Size[1] / 2 + currentOffset]
-            currentOffset += asset.Size[1] + self.Padding
+            currentOffset += asset.Size[1] + realPadding
             

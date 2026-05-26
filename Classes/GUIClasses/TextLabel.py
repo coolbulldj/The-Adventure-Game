@@ -2,13 +2,18 @@ import pygame as py
 from pygame import freetype as ft
 from Classes.GUIClasses.GuiBase import GuiBase
 from Modules.Core.CoreGUI.FontCache import GetFont
+from Modules.Core.ErrorHandler import ThrowWarning
 
 seperator = " "  # allows for array of text lines to be combined
 
 
 def GetScaledTextSize(text: str, font: ft.SysFont, abSize):
-    if not text or text == "":
-        raise ValueError("text can't be none or ''")
+    if not text:
+        #ThrowWarning("Text is none")
+        return 1
+    
+    if text == "":
+        return 1
 
     ab_xs, ab_ys = abSize[0], abSize[1]
     # Start large
@@ -41,7 +46,11 @@ def DetermineWrap(
         return []
 
     words = text.split(seperator)
-    if len(words) == 1:
+
+    for w in words:
+        if w == '':
+            words.remove('')
+    if len(words) <= 1:
         return [text]
 
     xs, ys = absoluteSize
@@ -58,7 +67,6 @@ def DetermineWrap(
 
         lines = []
         current = []
-
         for w in words:
             candidate = seperator.join(current + [w]) if current else w
             rect = font.get_rect(candidate)
@@ -129,7 +137,6 @@ class TextLabel(GuiBase):
                 if self.TextWrapped
                 else [self.Text]
             )
-
             # Compute a font size that fits vertically for the number of lines
             rows = max(1, len(wrapLines))
             per_row_height = ab_ys / rows

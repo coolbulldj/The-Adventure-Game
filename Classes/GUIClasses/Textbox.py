@@ -36,6 +36,7 @@ class Textbox(TextButton):
         if keycode == 8:
             # this is on an backspace key press
             self.Text = self.Text[:-1]
+
             return
         if keycode == 13:
             # this is on an enter key press
@@ -44,4 +45,3 @@ class Textbox(TextButton):
         #print(self.Text + chr(keycode))
         SetText = self.Text + chr(keycode)
         self.Text = SetText
-        print( (keycode))
