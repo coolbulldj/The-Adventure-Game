@@ -17,7 +17,7 @@ class ScrollingFrame(GuiBase):
         self.ScrollSpeed = (
             -0.1
         )  # relative to the canvas size (done as a percentage of size)
-        self.ScrollingBarColor = (255, 0, 0)
+        self.ScrollingBarColor = (255, 255, 255)
         self.ScrollingBackgroundColor = (55, 55, 55)
         self._CanvasSize = [0, 0]
         self._CanvasPos = [0, 0]
@@ -48,7 +48,9 @@ class ScrollingFrame(GuiBase):
                 # rendering a GuiBase
                 if not child.Visible:
                     continue
-                child.render(screen, self.AbsoluteSize, [0, screenOffset])
+                child.render(
+                    screen, self.AbsoluteSize, self.LastFrame, [0, screenOffset]
+                )
             else:
                 # rendering a UI Structure
                 if not child.Enabled:
@@ -56,12 +58,16 @@ class ScrollingFrame(GuiBase):
                 child.render()
 
     def _renderScrollingBars(self, screen):
-        # render y-axis scrolling bar
-        if self._CanvasSize[1] < 0:
+        if self._CanvasSize[1] > 0:
             py.draw.rect(
                 screen,
                 self.ScrollingBackgroundColor,
                 (
+                    # self.AbsolutePos[0]
+                    # + self.AbsoluteSize[0] * (1 - self.ScrollingBarSize),
+                    # self.AbsolutePos[1],
+                    # self.AbsoluteSize[0] * self.ScrollingBarSize,
+                    # self.AbsoluteSize[1],
                     self.AbsolutePos[0]
                     + self.AbsoluteSize[0] * (1 - self.ScrollingBarSize),
                     self.AbsolutePos[1],
@@ -70,24 +76,32 @@ class ScrollingFrame(GuiBase):
                 ),
             )
 
-            scrollingXBarSize = self.AbsoluteSize[1] / (1 + self._CanvasSize[1])
+            barHeight = 1 / (1 + self._CanvasSize[1])
+
+            #scroll rectangle
             py.draw.rect(
                 screen,
                 self.ScrollingBarColor,
                 (
+                    # self.AbsolutePos[0]
+                    # + self.AbsoluteSize[0] * (1 - self.ScrollingBarSize),
+                    # self.AbsolutePos[1],
+                    # self.AbsoluteSize[0] * self.ScrollingBarSize,
+                    # self.AbsoluteSize[1],
                     self.AbsolutePos[0]
                     + self.AbsoluteSize[0] * (1 - self.ScrollingBarSize),
-                    self.AbsolutePos[1]
-                    + ((self._CanvasPos[1]) / (self._CanvasSize[1]))
-                    * (self.AbsoluteSize[1] - scrollingXBarSize),
+                    self.AbsolutePos[1] + self._CanvasPos[1] * self.AbsoluteSize[1]* barHeight,
                     self.AbsoluteSize[0] * self.ScrollingBarSize,
-                    scrollingXBarSize,
+                    self.AbsoluteSize[1] * barHeight,
                 ),
             )
 
-    def render(self, screen, *args):
-        super().render(*args)
 
+    def render(self, screen, *args):
+        if not self.Visible:
+            return
+        super().render(*args)
+        self.renderUIStructures(screen)
         # screen surface
         surface = py.Surface((self.AbsoluteSize[0], self.AbsoluteSize[1]))
 
@@ -112,8 +126,10 @@ class ScrollingFrame(GuiBase):
                 # print(child.Pos[1])
                 canvasY = max(child.Pos[1] + child.Size[1], canvasY)
         canvasY -= 1
+        canvasY = max(0, canvasY)
 
         self._CanvasSize = [canvasX, canvasY]
         # render children
-        self.renderUIAssets(screen)
+        self.renderUIAssets(surface)
         screen.blit(surface, (self.AbsolutePos[0], self.AbsolutePos[1]))
+        self._renderScrollingBars(screen)
