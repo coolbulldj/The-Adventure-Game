@@ -160,5 +160,17 @@ class GuiBase:
         ]
         self.LastFrame = LastFrame
 
+    def FindFirstChild(self, QueryName):
+        pass
+
+    def FindFirstDescendant(self, QueryName):
+        pass
+
+    def FindFirstChildOfClass(self, QueryName):
+        pass
+
+    def FindFirstDescendantOfClass(self, QueryName):
+        pass
+
     def destroy(self):
         destoryGuiAsset(self._GUIKey)
