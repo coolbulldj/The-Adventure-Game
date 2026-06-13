@@ -78,7 +78,7 @@ class ScrollingFrame(GuiBase):
 
             barHeight = 1 / (1 + self._CanvasSize[1])
 
-            #scroll rectangle
+            # scroll rectangle
             py.draw.rect(
                 screen,
                 self.ScrollingBarColor,
@@ -90,12 +90,12 @@ class ScrollingFrame(GuiBase):
                     # self.AbsoluteSize[1],
                     self.AbsolutePos[0]
                     + self.AbsoluteSize[0] * (1 - self.ScrollingBarSize),
-                    self.AbsolutePos[1] + self._CanvasPos[1] * self.AbsoluteSize[1]* barHeight,
+                    self.AbsolutePos[1]
+                    + self._CanvasPos[1] * self.AbsoluteSize[1] * barHeight,
                     self.AbsoluteSize[0] * self.ScrollingBarSize,
                     self.AbsoluteSize[1] * barHeight,
                 ),
             )
-
 
     def render(self, screen, *args):
         if not self.Visible:

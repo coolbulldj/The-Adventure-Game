@@ -3,7 +3,6 @@ from Classes.GUIClasses.Frame import Frame
 from Classes.GUIClasses.TextLabel import TextLabel
 from Classes.GUIClasses.TextButton import TextButton
 from Classes.GUIClasses.ImageLabel import Image
-from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
 from Classes.GUIClasses.Textbox import Textbox
 from Classes.GUIClasses.NonRendered.UIListLayout import UIListLayout
 from Classes.GUIClasses.NonRendered.UIStroke import UIStroke
@@ -62,6 +61,7 @@ UsernameLabel.Parent = LoginFormFrame
 
 UsernameInput = Textbox()
 UsernameInput.Size = [0.9, 0.12]
+UsernameInput.Font = "pressstart2p"
 UsernameInput.BackgroundColor = (40, 40, 40)
 UsernameInput.TextColor = (255, 255, 255)
 UsernameInput.Text = ""
@@ -85,6 +85,7 @@ PasswordLabel.Parent = LoginFormFrame
 
 PasswordInput = Textbox()
 PasswordInput.Size = [0.9, 0.12]
+PasswordInput.Font = "pressstart2p"
 PasswordInput.BackgroundColor = (40, 40, 40)
 PasswordInput.TextColor = (255, 255, 255)
 PasswordInput.Text = ""

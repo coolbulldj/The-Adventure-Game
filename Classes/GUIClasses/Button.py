@@ -12,6 +12,7 @@ class Button:
         self.MouseButton2Down = Event()
         self.ClickOff = Event()
         self.LastFrame = 0  # use to track whether the button was rendered for the frame if not then the button events shall not trigger.
+        self.Name = "Unknown Button name"
         AddButton(self)
 
     def check_mouse_hit(self, mouseHit, currentFrame):
@@ -34,7 +35,7 @@ class Button:
             return False
         elif my < ly or hy < my:
             return False
-
+        print(f"Button {self.Name} clicked")
         return True
 
     def render(self, pos, size, LastFrame):

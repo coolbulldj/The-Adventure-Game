@@ -7,6 +7,7 @@ class UIStructure:
     def __init__(self):
         self.Enabled = True
         self.Parent: GuiBase = "game"
+        self.Name = "UnknownUIStructure"
         # self.Children = [] UIStructures can't have children
         self._GUIKey = addGuiAsset(self)
 

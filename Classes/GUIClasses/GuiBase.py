@@ -42,6 +42,7 @@ class GuiBase:
         self.zIndex = 1
         self.Visible = True
         self.LastFrame = 0  # tracks the last frame the gui was rendered
+        self.BorderRadius = 0 #this is edit by the UI corner class.
 
         self.Parent = "game"
         self.Name = "UnknownName"
@@ -118,7 +119,7 @@ class GuiBase:
             if not isinstance(asset, GuiBase):
                 structureAssets.append(asset)
         return structureAssets
-    
+
     def _sortUIAssets(self):
         renderedAssets = []
 
@@ -160,14 +161,26 @@ class GuiBase:
         ]
         self.LastFrame = LastFrame
 
-    def FindFirstChild(self, QueryName):
-        pass
+    def FindFirstChild(self, QueryName, returnKey: bool = False):
+        for key in self.Children:
+            child = GuiAssets[key]
+            if child.Name == QueryName:
+                if returnKey:
+                    return key
+                else:
+                    return child
 
     def FindFirstDescendant(self, QueryName):
         pass
 
-    def FindFirstChildOfClass(self, QueryName):
-        pass
+    def FindFirstChildOfClass(self, QueryName, returnKey: bool = False):
+        for key in self.Children:
+            child = GuiAssets[key]
+            if child.__class__.__name__ == QueryName:
+                if returnKey:
+                    return key
+                else:
+                    return child
 
     def FindFirstDescendantOfClass(self, QueryName):
         pass

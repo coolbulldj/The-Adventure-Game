@@ -4,7 +4,6 @@ buttons = {}
 
 
 def AddButton(button):
-    print("new button!")
     key = CreateUniqueKeyForMap(buttons)
 
     buttons[key] = button
@@ -12,8 +11,11 @@ def AddButton(button):
 
 
 def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int, CurrentFrame):
-     
-    for button in buttons.values():
+    current_buttons = (
+        buttons.copy()
+    )  # creates a copy so then if data edits caused by mouse events
+    # don't cause a dictionary changed size during iteration error
+    for button in current_buttons.values():
         if not button.check_mouse_hit(mousePositon, CurrentFrame):
             button.ClickOff._FireEvent()
             continue

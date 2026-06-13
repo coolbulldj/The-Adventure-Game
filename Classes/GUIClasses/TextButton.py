@@ -1,11 +1,19 @@
 from Classes.GUIClasses.TextLabel import TextLabel
 from Classes.GUIClasses.Button import Button
+from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
 
 
 class TextButton(TextLabel):
     def __init__(self):
         super().__init__()
         self.Button = Button(self.AbsolutePos, self.AbsoluteSize)
+        self.Button.Name = ""
+
+    def __setattr__(self, name, value):
+        if hasattr(self, "Button"):
+            if hasattr(self.Button, name):
+                setattr(self.Button, name, value)
+        return super().__setattr__(name, value)
 
     def render(self, screen, screenSize, LastFrame, posOffset):
         super().render(screen, screenSize, LastFrame, posOffset)

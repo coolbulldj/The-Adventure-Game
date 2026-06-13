@@ -34,7 +34,7 @@ AccountSelectBackground.Parent = AccountSelectScreen
 AccountSelectPanel = Frame()
 AccountSelectPanel.Size = [0.5, 0.75]
 AccountSelectPanel.Pos = [0.5, 0.5]
-AccountSelectPanel.BackgroundTransparency = 0.2
+AccountSelectPanel.BackgroundTransparency = 0
 AccountSelectPanel.BackgroundColor = (20, 20, 20)
 AccountSelectPanel.zIndex = 3
 AccountSelectPanel.Parent = AccountSelectScreen
@@ -65,12 +65,13 @@ AccountSelectTitle.Parent = AccountSelectPanel
 
 AccountScrollFrame = ScrollingFrame()
 AccountScrollFrame.Size = [0.95, 0.7]
-AccountScrollFrame.BackgroundTransparency = 1
+AccountScrollFrame.BackgroundTransparency = 0
+AccountScrollFrame.ScrollingBackgroundColor = (0, 255, 0)
 AccountScrollFrame.zIndex = 4
 AccountScrollFrame.Parent = AccountSelectPanel
 
 AccountScrollLayout = UIListLayout()
-AccountScrollLayout.Padding = 0.03
+AccountScrollLayout.Padding = 0.1
 AccountScrollLayout.Parent = AccountScrollFrame
 
 # ---------------------------------------------------------------
@@ -83,9 +84,9 @@ def MakeAccountCard(username: str, index):
     card = Frame()
     card.Size = [1, 0.22]
     card.BackgroundColor = (35, 35, 35)
-    card.BackgroundTransparency = 0.1
+    card.BackgroundTransparency = 0
     card.Name = f"AccountCard_{index}"
-    card.zIndex = 5
+    card.zIndex = 1
     card.Parent = AccountScrollFrame
 
     cardCorner = UICorner()
@@ -115,7 +116,7 @@ def MakeAccountCard(username: str, index):
     selectB.TextColor = (255, 255, 255)
     selectB.BackgroundColor = (50, 120, 50)
     selectB.Text = "Select"
-    selectB.Name = f"AccountCardSelectB_{index}"
+    selectB.Name = "SelectB"
     selectB.zIndex = 6
     selectB.Parent = card
 
@@ -131,7 +132,7 @@ def MakeAccountCard(username: str, index):
     deleteB.TextColor = (255, 60, 60)
     deleteB.BackgroundColor = (60, 20, 20)
     deleteB.Text = "Del"
-    deleteB.Name = f"AccountCardDeleteB_{index}"
+    deleteB.Name = "DeleteB"
     deleteB.zIndex = 6
     deleteB.Parent = card
 

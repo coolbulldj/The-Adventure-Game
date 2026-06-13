@@ -1,9 +1,17 @@
-#This module acts as a registery for UI assets which can then be asscessed by gameloop
-from Modules.Gameloop.UI.Init.LoginPage import LoginScreen, LoginB
-from Modules.Gameloop.UI.Init.AccountSelectionPage import AccountSelectScreen, NewAccountB
+# This module acts as a registery for UI assets which can then be asscessed by gameloop
+from Modules.Gameloop.UI.Init.LoginPage import (
+    LoginScreen,
+    LoginB,
+    UsernameInput,
+    PasswordInput,
+)
+from Modules.Gameloop.UI.Init.AccountSelectionPage import (
+    AccountSelectScreen,
+    NewAccountB,
+)
 from Modules.Gameloop.UI.Init.StartMenuPage import MenuFrame, PlayB, SettingsB, CreditsB
 
-#Load functions
+# Load functions
 from Modules.Gameloop.UI.Scripts.AccountHandler import Load as AHLoad
 
 AHLoad([])

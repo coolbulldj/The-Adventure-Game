@@ -1,11 +1,12 @@
 import Modules.Gameloop.UIHandler as UIHandler
 
-UIHandler.MenuFrame.Visible = True
+UIHandler.MenuFrame.Visible = False
 UIHandler.LoginScreen.Visible = False
-UIHandler.AccountSelectScreen.Visible = False
+UIHandler.AccountSelectScreen.Visible = True
 
 
 countDown = 0
+
 
 def hideFrame():
     UIHandler.MenuFrame.Visible = False
@@ -13,7 +14,6 @@ def hideFrame():
 
 
 UIHandler.PlayB.Button.MouseButton1Up.Connect(hideFrame)
-
 
 
 def run(deltaTime: float):
