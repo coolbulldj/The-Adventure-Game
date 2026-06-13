@@ -8,5 +8,6 @@ def addGuiAsset(asset):
     GuiAssets[key] = asset
     return key
 
+
 def destoryGuiAsset(key):
     GuiAssets[key] = None

@@ -1,6 +1,7 @@
 from Classes.GUIClasses.TextButton import TextButton
 from Modules.Core.CoreGUI.TextboxHandler import addTextboxAsset, destoryTextboxAsset
 
+
 def is_valid_chr(n):  # basically
     return isinstance(n, int) and 0 <= n <= 0x10FFFF
 
@@ -18,6 +19,9 @@ class Textbox(TextButton):
 
         addTextboxAsset(self)
 
+    def __setattr__(self, name, value):
+        return super().__setattr__(name, value)
+
     def startTyping(self):
         self.IsTyping = True
 
@@ -27,11 +31,11 @@ class Textbox(TextButton):
     def typing(self, keycode):
         if not is_valid_chr(keycode):
             # keycode is not able to be translated to a string therefore remove it
-            #print("invalid keycode")
+            # print("invalid keycode")
             return
 
         if not self.IsTyping:
-            #print("typing typing typing but can't")
+            # print("typing typing typing but can't")
             return
         if keycode == 8:
             # this is on an backspace key press
@@ -42,6 +46,6 @@ class Textbox(TextButton):
             # this is on an enter key press
             self.stopTyping(self)
             return
-        #print(self.Text + chr(keycode))
+        # print(self.Text + chr(keycode))
         SetText = self.Text + chr(keycode)
         self.Text = SetText

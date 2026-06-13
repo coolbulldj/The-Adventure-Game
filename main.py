@@ -20,6 +20,7 @@ from gameloop import run
 FPS_CAP = 60
 LastFrameTime = time.time()
 ElapedTime = 0
+CurrentFrame = 0  # tracks the current frame rendered count
 
 while Running:
     # Calculate Delta time
@@ -38,21 +39,20 @@ while Running:
             sys.exit()
             Running = False
         elif event.type == py.MOUSEBUTTONUP:
-            CheckButtons(mousePos, True, event.button)
+            CheckButtons(mousePos, True, event.button, CurrentFrame)
         elif event.type == py.MOUSEBUTTONDOWN:
-            CheckButtons(mousePos, False, event.button)
+            CheckButtons(mousePos, False, event.button, CurrentFrame)
         elif event.type == py.MOUSEWHEEL:
             triggerScrollMotion([event.x, event.y])
-        
-        #Uses input service here as 
-        # 1. it allows more customizality 
+
+        # Uses input service here as
+        # 1. it allows more customizality
         # 2.it allows keys to be an looped through as an array
         elif event.type == py.KEYDOWN:
             InputService.KeyDown(event.key)
         elif event.type == py.KEYUP:
             InputService.KeyUp(event.key)
     InputService.Tick(dt)
-
 
     # run game logic
     run(dt)
@@ -64,5 +64,6 @@ while Running:
         sx,
         sy,
     ]  # converts to an array as screen size must be passed as an array
-    RenderAssets(screen, screenSize)  # renders all gui assets
+    CurrentFrame += 1
+    RenderAssets(screen, screenSize, CurrentFrame)  # renders all gui assets
     py.display.flip()

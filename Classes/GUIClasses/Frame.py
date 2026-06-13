@@ -6,20 +6,18 @@ class Frame(GuiBase):
     def __init__(self):
         super().__init__()
 
-    def render(self, screen, ScreenSize, posOffset=[0, 0]):
-        super().render(ScreenSize, posOffset)
-
-        if self.BackgroundTransparency == 1:
-            return
-
-        py.draw.rect(
-            screen,
-            self.BackgroundColor,
-            (
-                self.AbsolutePos[0],
-                self.AbsolutePos[1],
-                self.AbsoluteSize[0],
-                self.AbsoluteSize[1],
-            ),
-        )
-        self.renderChildren(screen)
+    def render(self, screen, *args):
+        super().render(*args)
+        self.renderUIStructures(screen)
+        if self.BackgroundTransparency != 1:
+            py.draw.rect(
+                screen,
+                self.BackgroundColor,
+                (
+                    self.AbsolutePos[0],
+                    self.AbsolutePos[1],
+                    self.AbsoluteSize[0],
+                    self.AbsoluteSize[1],
+                ),
+            )
+        self.renderUIAssets(screen)

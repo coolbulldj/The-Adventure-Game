@@ -4,15 +4,17 @@ buttons = {}
 
 
 def AddButton(button):
+    print("new button!")
     key = CreateUniqueKeyForMap(buttons)
 
     buttons[key] = button
     return key
 
 
-def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int):
+def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int, CurrentFrame):
+     
     for button in buttons.values():
-        if not button.check_mousehit(mousePositon):
+        if not button.check_mouse_hit(mousePositon, CurrentFrame):
             button.ClickOff._FireEvent()
             continue
         if MouseUp:

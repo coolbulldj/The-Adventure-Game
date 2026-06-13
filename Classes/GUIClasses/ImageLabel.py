@@ -30,27 +30,26 @@ class Image(GuiBase):
             # Update image
             self.Image = getImage(value)
 
-    def render(self, screen, screenSize, posOffset=[0, 0]):
-        if super().render(screenSize, posOffset):  # this means the super is invisible
-            # print(self.Visible)
-            return
+    def render(self, screen, *args):
+        super().render(*args)  # this means the super is invisible
 
         ab_xs, ab_ys = self.AbsoluteSize
-
+        self.renderUIStructures(screen)
         # Draw backing frmae
-        py.draw.rect(
-            screen,
-            self.BackgroundColor,
-            (
-                self.AbsolutePos[0],
-                self.AbsolutePos[1],
-                self.AbsoluteSize[0],
-                self.AbsoluteSize[1],
-            ),
-        )
+        if self.BackgroundTransparency != 1:
+            py.draw.rect(
+                screen,
+                self.BackgroundColor,
+                (
+                    self.AbsolutePos[0],
+                    self.AbsolutePos[1],
+                    self.AbsoluteSize[0],
+                    self.AbsoluteSize[1],
+                ),
+            )
 
         # Resize the original image to a new width of 100 and height of 50
         resized_image = py.transform.scale(self.Image, (ab_xs, ab_ys))
 
         screen.blit(resized_image, self.AbsolutePos)
-        self.renderChildren(screen)
+        self.renderUIAssets(screen)
