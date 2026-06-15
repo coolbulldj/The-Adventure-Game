@@ -1,6 +1,10 @@
 from GeneralFunctions import CreateUniqueKeyForMap
 
 buttons = {}
+active_buttons = []
+
+def ActiveButton(key):
+    active_buttons.append(key)
 
 
 def AddButton(button):
@@ -9,16 +13,20 @@ def AddButton(button):
     buttons[key] = button
     return key
 
+def ResetActiveButtons():
+    global active_buttons
+    active_buttons = []
 
-def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int, CurrentFrame):
-    current_buttons = (
-        buttons.copy()
-    )  # creates a copy so then if data edits caused by mouse events
+def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int):
+    global active_buttons
+    # creates a copy so then if data edits caused by mouse events
     # don't cause a dictionary changed size during iteration error
-    for button in current_buttons.values():
-        if not button.check_mouse_hit(mousePositon, CurrentFrame):
+    for buttonKey in active_buttons:
+        button = buttons[buttonKey]
+        if not button.check_mouse_hit(mousePositon):
             button.ClickOff._FireEvent()
             continue
+    
         if MouseUp:
             if MouseCode == 1:
                 button.MouseButton1Up._FireEvent()  # Left Click
@@ -37,5 +45,5 @@ def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int, CurrentFrame):
                 # v.MouseButton1Up._FireEvent()
                 pass
             elif MouseCode == 3:
+                #print("right click")
                 button.MouseButton2Down._FireEvent()  # Right Click
-                pass

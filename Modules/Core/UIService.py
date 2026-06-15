@@ -51,7 +51,7 @@ def _sortAssets(AssetList):
     return structureAssets + renderedAssets
 
 
-def RenderAssets(screen, screenSize, LastFrame):
+def RenderAssets(screen, screenSize):
     for asset in _sortAssets(GuiAssets.keys()):
         if asset.Parent != "game":
             # if the asset's parent isn't game that
@@ -60,4 +60,4 @@ def RenderAssets(screen, screenSize, LastFrame):
             continue
         if not asset.Visible:
             continue
-        asset.render(screen, screenSize, LastFrame)
+        asset.render(screen, screenSize)

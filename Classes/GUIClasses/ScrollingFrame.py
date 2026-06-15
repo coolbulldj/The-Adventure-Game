@@ -49,7 +49,7 @@ class ScrollingFrame(GuiBase):
                 if not child.Visible:
                     continue
                 child.render(
-                    screen, self.AbsoluteSize, self.LastFrame, [0, screenOffset]
+                    screen, self.AbsoluteSize, [0, screenOffset]
                 )
             else:
                 # rendering a UI Structure

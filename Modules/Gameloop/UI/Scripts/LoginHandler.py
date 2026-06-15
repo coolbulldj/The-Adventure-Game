@@ -15,6 +15,9 @@ def SetLoginState(state):
         LoginB.Text = "Create Acccount"
     else:
         print(f"Attempted to set invalid login state:{state}")
+    #reset textboxes
+    UsernameInput.Text = ""
+    PasswordInput.Text = "" 
 
 def GetAccountDetails():
     print(f"Creating new account with username:{UsernameInput.Text} & password:{PasswordInput.Text}")

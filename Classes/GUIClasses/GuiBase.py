@@ -41,7 +41,6 @@ class GuiBase:
         self.BackgroundTransparency = 0
         self.zIndex = 1
         self.Visible = True
-        self.LastFrame = 0  # tracks the last frame the gui was rendered
         self.BorderRadius = 0 #this is edit by the UI corner class.
 
         self.Parent = "game"
@@ -142,9 +141,9 @@ class GuiBase:
         renderedAssets = self._sortUIAssets()
 
         for asset in renderedAssets:
-            asset.render(screen, self.AbsoluteSize, self.LastFrame, self.AbsolutePos)
+            asset.render(screen, self.AbsoluteSize, self.AbsolutePos)
 
-    def render(self, screenSize, LastFrame, positionOffset=[0, 0]):
+    def render(self, screenSize, positionOffset=[0, 0]):
         # print(screenSize, LastFrame, positionOffset, self.__class__.__name__)
         self.AbsoluteSize = [self.Size[0] * screenSize[0], self.Size[1] * screenSize[1]]
         self.AbsolutePos = [
@@ -159,8 +158,6 @@ class GuiBase:
                 + positionOffset[1]
             ),
         ]
-        self.LastFrame = LastFrame
-
     def FindFirstChild(self, QueryName, returnKey: bool = False):
         for key in self.Children:
             child = GuiAssets[key]

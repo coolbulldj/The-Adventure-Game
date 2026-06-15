@@ -1,9 +1,8 @@
 import Modules.Gameloop.UIHandler as UIHandler
 
-UIHandler.MenuFrame.Visible = False
+UIHandler.MenuFrame.Visible = True
 UIHandler.LoginScreen.Visible = False
-UIHandler.AccountSelectScreen.Visible = True
-
+UIHandler.AccountSelectScreen.Visible = False
 
 countDown = 0
 

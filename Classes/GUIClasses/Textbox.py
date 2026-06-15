@@ -56,7 +56,7 @@ class Textbox(TextButton):
         SetText = self.Text + chr(keycode)
         self.Text = SetText
     
-    def render(self, screen, screenSize, LastFrame, posOffset):
+    def render(self, screen, screenSize, posOffset):
         realText = self.Text
 
         if self.IsTyping:
@@ -71,7 +71,7 @@ class Textbox(TextButton):
             else:
                 self.Text = realText + " "
 
-        super().render(screen, screenSize, LastFrame, posOffset)
+        super().render(screen, screenSize, posOffset)
 
         # Restore actual text value
         self.Text = realText

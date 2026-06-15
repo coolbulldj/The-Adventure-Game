@@ -15,6 +15,7 @@ class TextButton(TextLabel):
                 setattr(self.Button, name, value)
         return super().__setattr__(name, value)
 
-    def render(self, screen, screenSize, LastFrame, posOffset):
-        super().render(screen, screenSize, LastFrame, posOffset)
-        self.Button.render(self.AbsolutePos, self.AbsoluteSize, LastFrame)
+    def render(self, *args):
+        super().render(*args)
+        #print(self.AbsolutePos, self.AbsoluteSize, self.Name)
+        self.Button.render(self.AbsolutePos, self.AbsoluteSize)

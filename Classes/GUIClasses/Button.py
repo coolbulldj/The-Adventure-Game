@@ -1,5 +1,5 @@
 from Classes.CoreClasses.EventClass import Event
-from Modules.Core.CoreGUI.ButtonHandler import AddButton
+from Modules.Core.CoreGUI.ButtonHandler import AddButton, ActiveButton
 
 
 class Button:
@@ -11,14 +11,10 @@ class Button:
         self.MouseButton2Up = Event()
         self.MouseButton2Down = Event()
         self.ClickOff = Event()
-        self.LastFrame = 0  # use to track whether the button was rendered for the frame if not then the button events shall not trigger.
         self.Name = "Unknown Button name"
-        AddButton(self)
+        self.ButtonKey = AddButton(self)
 
-    def check_mouse_hit(self, mouseHit, currentFrame):
-        # print(self.LastFrame, currentFrame)
-        if self.LastFrame != currentFrame:
-            return
+    def check_mouse_hit(self, mouseHit):
         # bounds of the button
         lx, hx = (
             self.AbsolutePos[0],
@@ -35,11 +31,15 @@ class Button:
             return False
         elif my < ly or hy < my:
             return False
-        print(f"Button {self.Name} clicked")
+        
+        print(f"Button {self.Name} clicked", lx, hx, ly, hy, mouseHit)
         return True
 
-    def render(self, pos, size, LastFrame):
-        self.AbsolutePos = size
-        self.AbsoluteSize = pos
-        self.LastFrame = LastFrame
+    def render(self, pos, size):
+        self.AbsolutePos = pos
+        self.AbsoluteSize = size
+        ActiveButton(self.ButtonKey)
         # print(self.LastFrame)
+        if self.Name != "PlayB":
+            return
+        print(f"rendering button: {self.Name}")

@@ -4,8 +4,9 @@ import sys
 import time
 # Classes
 
+
 # Core Functions
-from Modules.Core.CoreGUI.ButtonHandler import CheckButtons
+from Modules.Core.CoreGUI.ButtonHandler import CheckButtons, ResetActiveButtons
 from Modules.Core.CoreGUI.ScrollHandler import triggerScrollMotion
 from Modules.Core.UIService import RenderAssets
 import Modules.Core.InputService as InputService
@@ -39,9 +40,9 @@ while Running:
             sys.exit()
             Running = False
         elif event.type == py.MOUSEBUTTONUP:
-            CheckButtons(mousePos, True, event.button, CurrentFrame)
+            CheckButtons(mousePos, True, event.button)
         elif event.type == py.MOUSEBUTTONDOWN:
-            CheckButtons(mousePos, False, event.button, CurrentFrame)
+            CheckButtons(mousePos, False, event.button)
         elif event.type == py.MOUSEWHEEL:
             triggerScrollMotion([event.x, event.y])
 
@@ -52,6 +53,8 @@ while Running:
             InputService.KeyDown(event.key)
         elif event.type == py.KEYUP:
             InputService.KeyUp(event.key)
+    ResetActiveButtons()
+    #reset active buttons
     InputService.Tick(dt)
 
     # run game logic
@@ -65,5 +68,5 @@ while Running:
         sy,
     ]  # converts to an array as screen size must be passed as an array
     CurrentFrame += 1
-    RenderAssets(screen, screenSize, CurrentFrame)  # renders all gui assets
+    RenderAssets(screen, screenSize)  # renders all gui assets
     py.display.flip()
