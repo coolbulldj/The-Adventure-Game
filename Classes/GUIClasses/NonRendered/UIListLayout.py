@@ -23,5 +23,8 @@ class UIListLayout(UIStructure):
 
             if not isinstance(asset, GuiBase):
                 continue
-            asset.Pos = [self.Parent.Pos[0], asset.Size[1] / 2 + currentOffset]
+            asset.Pos = [
+                asset.Size[0] / 2,
+                asset.Size[1] / 2 + currentOffset,
+            ]
             currentOffset += asset.Size[1] + realPadding

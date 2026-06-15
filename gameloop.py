@@ -1,4 +1,5 @@
 import Modules.Gameloop.UIHandler as UIHandler
+from Modules.Gameloop.UI.Scripts.MainScreenHandler import Tick as MainScreenTick
 
 UIHandler.MenuFrame.Visible = False
 UIHandler.LoginScreen.Visible = False
@@ -18,4 +19,4 @@ UIHandler.PlayB.Button.MouseButton1Up.Connect(hideFrame)
 def run(deltaTime: float):
     global countDown
     countDown += deltaTime
-    # print(UIHandler.framesList[len(UIHandler.framesList) - 1].Pos)
+    MainScreenTick(deltaTime)

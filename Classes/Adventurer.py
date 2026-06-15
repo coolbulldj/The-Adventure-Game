@@ -3,6 +3,9 @@ class Adventurer:
         self.Name = Name
         self.Gender = Gender
         self.Age = Age
+        self.Health = 100
+        self.Food = 80
+        self.Hunger = 15
         self.Items = {}
         # inventory key, dictonary {
         # ItemName:string,
