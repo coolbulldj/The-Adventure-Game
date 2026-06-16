@@ -1,25 +1,17 @@
-# GUI Classes
-from Classes.GUIClasses.Frame import Frame
-from Classes.GUIClasses.TextLabel import TextLabel
-from Classes.GUIClasses.TextButton import TextButton
-from Classes.GUIClasses.ImageLabel import Image
-from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
-from Classes.GUIClasses.NonRendered.UIListLayout import UIListLayout
-from Classes.GUIClasses.NonRendered.UIStroke import UIStroke
-from Classes.GUIClasses.NonRendered.UICorner import UICorner
+import Modules.Core.InstanceCreator as InstanceCreator
 
 # ---------------------------------------------------------------
 # Account Selection Screen
 # ---------------------------------------------------------------
 
-AccountSelectScreen = Frame()
+AccountSelectScreen = InstanceCreator.createNewInstance("Frame")
 AccountSelectScreen.Size = [1, 1]
 AccountSelectScreen.Pos = [0.5, 0.5]
 AccountSelectScreen.BackgroundTransparency = 1
 AccountSelectScreen.Visible = False
 AccountSelectScreen.zIndex = 1
 
-AccountSelectBackground = Image()
+AccountSelectBackground = InstanceCreator.createNewInstance("Image")
 AccountSelectBackground.Size = [1, 1]
 AccountSelectBackground.ImagePath = (
     "Assets\Images\Backgrounds\RedFrontierGamebackground.png"
@@ -31,7 +23,7 @@ AccountSelectBackground.Parent = AccountSelectScreen
 # Center panel
 # ---------------------------------------------------------------
 
-AccountSelectPanel = Frame()
+AccountSelectPanel = InstanceCreator.createNewInstance("Frame")
 AccountSelectPanel.Size = [0.5, 0.75]
 AccountSelectPanel.Pos = [0.5, 0.5]
 AccountSelectPanel.BackgroundTransparency = 0
@@ -39,10 +31,10 @@ AccountSelectPanel.BackgroundColor = (20, 20, 20)
 AccountSelectPanel.zIndex = 3
 AccountSelectPanel.Parent = AccountSelectScreen
 
-AccountSelectPanelCorner = UICorner()
+AccountSelectPanelCorner = InstanceCreator.createNewInstance("UICorner")
 AccountSelectPanelCorner.Parent = AccountSelectPanel
 
-AccountSelectPanelLayout = UIListLayout()
+AccountSelectPanelLayout = InstanceCreator.createNewInstance("UIListLayout")
 AccountSelectPanelLayout.Padding = 0.03
 AccountSelectPanelLayout.Parent = AccountSelectPanel
 
@@ -50,7 +42,7 @@ AccountSelectPanelLayout.Parent = AccountSelectPanel
 # Header
 # ---------------------------------------------------------------
 
-AccountSelectTitle = TextLabel()
+AccountSelectTitle = InstanceCreator.createNewInstance("TextLabel")
 AccountSelectTitle.Size = [1, 0.1]
 AccountSelectTitle.Font = "pressstart2p"
 AccountSelectTitle.TextColor = (255, 255, 255)
@@ -63,14 +55,14 @@ AccountSelectTitle.Parent = AccountSelectPanel
 # Scrolling list of account cards
 # ---------------------------------------------------------------
 
-AccountScrollFrame = ScrollingFrame()
+AccountScrollFrame = InstanceCreator.createNewInstance("ScrollingFrame")
 AccountScrollFrame.Size = [0.95, 0.7]
 AccountScrollFrame.BackgroundTransparency = 0
 AccountScrollFrame.ScrollingBackgroundColor = (0, 255, 0)
 AccountScrollFrame.zIndex = 4
 AccountScrollFrame.Parent = AccountSelectPanel
 
-AccountScrollLayout = UIListLayout()
+AccountScrollLayout = InstanceCreator.createNewInstance("UIListLayout")
 AccountScrollLayout.Padding = 0.1
 AccountScrollLayout.Parent = AccountScrollFrame
 
@@ -81,7 +73,7 @@ AccountScrollLayout.Parent = AccountScrollFrame
 
 
 def MakeAccountCard(username: str, index):
-    card = Frame()
+    card = InstanceCreator.createNewInstance("Frame")
     card.Size = [1, 0.22]
     card.BackgroundColor = (35, 35, 35)
     card.BackgroundTransparency = 0
@@ -89,15 +81,15 @@ def MakeAccountCard(username: str, index):
     card.zIndex = 1
     card.Parent = AccountScrollFrame
 
-    cardCorner = UICorner()
+    cardCorner = InstanceCreator.createNewInstance("UICorner")
     cardCorner.Parent = card
 
-    cardStroke = UIStroke()
+    cardStroke = InstanceCreator.createNewInstance("UIStroke")
     cardStroke.Size = 0.02
     cardStroke.Parent = card
 
     # Account name label (left-aligned via position offset)
-    cardName = TextLabel()
+    cardName = InstanceCreator.createNewInstance("TextLabel")
     cardName.Size = [0.55, 0.6]
     cardName.Pos = [0.3, 0.5]
     cardName.Font = "pressstart2p"
@@ -109,7 +101,7 @@ def MakeAccountCard(username: str, index):
     cardName.Parent = card
 
     # Select button
-    selectB = TextButton()
+    selectB = InstanceCreator.createNewInstance("TextButton")
     selectB.Size = [0.25, 0.55]
     selectB.Pos = [0.68, 0.5]
     selectB.Font = "pressstart2p"
@@ -120,12 +112,12 @@ def MakeAccountCard(username: str, index):
     selectB.zIndex = 6
     selectB.Parent = card
 
-    selectStroke = UIStroke()
+    selectStroke = InstanceCreator.createNewInstance("UIStroke")
     selectStroke.Size = 0.03
     selectStroke.Parent = selectB
 
     # Delete button
-    deleteB = TextButton()
+    deleteB = InstanceCreator.createNewInstance("TextButton")
     deleteB.Size = [0.18, 0.55]
     deleteB.Pos = [0.9, 0.5]
     deleteB.Font = "pressstart2p"
@@ -136,7 +128,7 @@ def MakeAccountCard(username: str, index):
     deleteB.zIndex = 6
     deleteB.Parent = card
 
-    deleteStroke = UIStroke()
+    deleteStroke = InstanceCreator.createNewInstance("UIStroke")
     deleteStroke.Size = 0.03
     deleteStroke.Parent = deleteB
 
@@ -147,7 +139,7 @@ def MakeAccountCard(username: str, index):
 # New Account button (bottom of panel, outside scroll)
 # ---------------------------------------------------------------
 
-NewAccountB = TextButton()
+NewAccountB = InstanceCreator.createNewInstance("TextButton")
 NewAccountB.Size = [0.6, 0.08]
 NewAccountB.Font = "pressstart2p"
 NewAccountB.TextColor = (255, 200, 0)
@@ -157,6 +149,6 @@ NewAccountB.Name = "NewAccountB"
 NewAccountB.zIndex = 4
 NewAccountB.Parent = AccountSelectPanel
 
-NewAccountStroke = UIStroke()
+NewAccountStroke = InstanceCreator.createNewInstance("UIStroke")
 NewAccountStroke.Size = 0.04
 NewAccountStroke.Parent = NewAccountB

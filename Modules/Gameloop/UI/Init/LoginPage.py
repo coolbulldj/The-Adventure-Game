@@ -1,15 +1,7 @@
-# GUI Classes
-from Classes.GUIClasses.Frame import Frame
-from Classes.GUIClasses.TextLabel import TextLabel
-from Classes.GUIClasses.TextButton import TextButton
-from Classes.GUIClasses.ImageLabel import Image
-from Classes.GUIClasses.Textbox import Textbox
-from Classes.GUIClasses.NonRendered.UIListLayout import UIListLayout
-from Classes.GUIClasses.NonRendered.UIStroke import UIStroke
-from Classes.GUIClasses.NonRendered.UICorner import UICorner
+import Modules.Core.InstanceCreator as InstanceCreator
 
 # Login screen
-LoginScreen = Frame()
+LoginScreen = InstanceCreator.createNewInstance("Frame")
 LoginScreen.Size = [1, 1]
 LoginScreen.Pos = [0.5, 0.5]
 LoginScreen.BackgroundTransparency = 1
@@ -17,14 +9,14 @@ LoginScreen.Visible = False
 LoginScreen.zIndex = 1
 
 # Background sits behind everything else in the screen
-LoginBackground = Image()
+LoginBackground = InstanceCreator.createNewInstance("Image")
 LoginBackground.Size = [1, 1]
 LoginBackground.ImagePath = "Assets\Images\Backgrounds\RedFrontierGamebackground.png"
 LoginBackground.zIndex = 2
 LoginBackground.Parent = LoginScreen
 
 # Form container floats above the background
-LoginFormFrame = Frame()
+LoginFormFrame = InstanceCreator.createNewInstance("Frame")
 LoginFormFrame.Size = [0.4, 0.6]
 LoginFormFrame.Pos = [0.5, 0.5]
 LoginFormFrame.BackgroundTransparency = 0
@@ -32,15 +24,15 @@ LoginFormFrame.BackgroundColor = (20, 20, 20)
 LoginFormFrame.zIndex = 3
 LoginFormFrame.Parent = LoginScreen
 
-LoginFormCorner = UICorner()
+LoginFormCorner = InstanceCreator.createNewInstance("UICorner")
 LoginFormCorner.Parent = LoginFormFrame
 
-LoginFormLayout = UIListLayout()
+LoginFormLayout = InstanceCreator.createNewInstance("UIListLayout")
 LoginFormLayout.Padding = 0.04
 LoginFormLayout.Parent = LoginFormFrame
 
 # --- Header ---
-LoginTitle = TextLabel()
+LoginTitle = InstanceCreator.createNewInstance("TextLabel")
 LoginTitle.Size = [1, 0.15]
 LoginTitle.Font = "pressstart2p"
 LoginTitle.TextColor = (255, 255, 255)
@@ -50,7 +42,7 @@ LoginTitle.zIndex = 4
 LoginTitle.Parent = LoginFormFrame
 
 # --- Username ---
-UsernameLabel = TextLabel()
+UsernameLabel = InstanceCreator.createNewInstance("TextLabel")
 UsernameLabel.Size = [0.9, 0.08]
 UsernameLabel.Font = "pressstart2p"
 UsernameLabel.TextColor = (200, 200, 200)
@@ -59,7 +51,7 @@ UsernameLabel.BackgroundTransparency = 1
 UsernameLabel.zIndex = 4
 UsernameLabel.Parent = LoginFormFrame
 
-UsernameInput = Textbox()
+UsernameInput = InstanceCreator.createNewInstance("Textbox")
 UsernameInput.Size = [0.9, 0.12]
 UsernameInput.Font = "pressstart2p"
 UsernameInput.BackgroundColor = (40, 40, 40)
@@ -69,12 +61,12 @@ UsernameInput.Name = "UsernameInput"
 UsernameInput.zIndex = 4
 UsernameInput.Parent = LoginFormFrame
 
-UsernameStroke = UIStroke()
+UsernameStroke = InstanceCreator.createNewInstance("UIStroke")
 UsernameStroke.Size = 0.02
 UsernameStroke.Parent = UsernameInput
 
 # --- Password ---
-PasswordLabel = TextLabel()
+PasswordLabel = InstanceCreator.createNewInstance("TextLabel")
 PasswordLabel.Size = [0.9, 0.08]
 PasswordLabel.Font = "pressstart2p"
 PasswordLabel.TextColor = (200, 200, 200)
@@ -83,7 +75,7 @@ PasswordLabel.BackgroundTransparency = 1
 PasswordLabel.zIndex = 4
 PasswordLabel.Parent = LoginFormFrame
 
-PasswordInput = Textbox()
+PasswordInput = InstanceCreator.createNewInstance("Textbox")
 PasswordInput.Size = [0.9, 0.12]
 PasswordInput.Font = "pressstart2p"
 PasswordInput.BackgroundColor = (40, 40, 40)
@@ -93,12 +85,12 @@ PasswordInput.Name = "PasswordInput"
 PasswordInput.zIndex = 4
 PasswordInput.Parent = LoginFormFrame
 
-PasswordStroke = UIStroke()
+PasswordStroke = InstanceCreator.createNewInstance("UIStroke")
 PasswordStroke.Size = 0.02
 PasswordStroke.Parent = PasswordInput
 
 # --- Submit Button ---
-LoginB = TextButton()
+LoginB = InstanceCreator.createNewInstance("TextButton")
 LoginB.Size = [0.6, 0.12]
 LoginB.Font = "pressstart2p"
 LoginB.TextColor = (255, 0, 0)
@@ -107,6 +99,6 @@ LoginB.Name = "LoginSubmitB"
 LoginB.zIndex = 4
 LoginB.Parent = LoginFormFrame
 
-LoginSubmitStroke = UIStroke()
+LoginSubmitStroke = InstanceCreator.createNewInstance("UIStroke")
 LoginSubmitStroke.Size = 0.04
 LoginSubmitStroke.Parent = LoginB

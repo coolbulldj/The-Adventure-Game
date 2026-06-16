@@ -1,6 +1,5 @@
 from Classes.GUIClasses.TextLabel import TextLabel
 from Classes.GUIClasses.Button import Button
-from Classes.GUIClasses.ScrollingFrame import ScrollingFrame
 
 
 class TextButton(TextLabel):

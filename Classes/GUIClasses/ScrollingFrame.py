@@ -40,6 +40,19 @@ class ScrollingFrame(GuiBase):
 
         self._CanvasPos = [newX, newY]
 
+    def _syncButtonHitAreas(self, parent):
+        if hasattr(parent, "Button"):
+            parent.Button.AbsolutePos = [
+                self.AbsolutePos[0] + parent.AbsolutePos[0],
+                self.AbsolutePos[1] + parent.AbsolutePos[1],
+            ]
+            parent.Button.AbsoluteSize = parent.AbsoluteSize
+
+        for childKey in parent.Children:
+            child = GuiAssets[childKey]
+            if isinstance(child, GuiBase):
+                self._syncButtonHitAreas(child)
+
     def renderUIAssets(self, screen):
         AssetList = self._sortUIAssets()
         screenOffset = -self._CanvasPos[1] * self.AbsoluteSize[1]
@@ -49,6 +62,7 @@ class ScrollingFrame(GuiBase):
                 if not child.Visible:
                     continue
                 child.render(screen, self.AbsoluteSize, [0, screenOffset])
+                self._syncButtonHitAreas(child)
             else:
                 # rendering a UI Structure
                 if not child.Enabled:

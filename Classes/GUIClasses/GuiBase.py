@@ -140,12 +140,16 @@ class GuiBase:
         structureAssets = self._sortUIStructures()
 
         for asset in structureAssets:
+            if not asset.Enabled:
+                continue
             asset.render(screen)
 
     def renderUIAssets(self, screen):
         renderedAssets = self._sortUIAssets()
 
         for asset in renderedAssets:
+            if not asset.Visible:
+                continue
             asset.render(screen, self.AbsoluteSize, self.AbsolutePos)
 
     def render(self, screenSize, positionOffset=[0, 0]):

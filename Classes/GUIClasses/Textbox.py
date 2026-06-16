@@ -52,7 +52,6 @@ class Textbox(TextButton):
             return
         if keycode == 13:
             # this is on an enter key press
-            self.stopTyping(self)
             return
         # print(self.Text + chr(keycode))
         SetText = self.Text + chr(keycode)
@@ -61,7 +60,7 @@ class Textbox(TextButton):
     def render(self, screen, screenSize, posOffset):
         realText = self.Text
 
-        if self.IsTyping:
+        if self.IsTyping and self.Text == "":
             currentTime = time.time()
 
             if currentTime - self.FlashTimer >= FLASH_INTERVAL:

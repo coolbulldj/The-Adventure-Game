@@ -2,8 +2,6 @@
 import pygame as py
 import sys
 import time
-# Classes
-
 
 # Core Functions
 from Modules.Core.CoreGUI.ButtonHandler import CheckButtons, ResetActiveButtons
@@ -21,7 +19,6 @@ from gameloop import run
 FPS_CAP = 60
 LastFrameTime = time.time()
 ElapedTime = 0
-CurrentFrame = 0  # tracks the current frame rendered count
 
 while Running:
     # Calculate Delta time
@@ -67,6 +64,5 @@ while Running:
         sx,
         sy,
     ]  # converts to an array as screen size must be passed as an array
-    CurrentFrame += 1
     RenderAssets(screen, screenSize)  # renders all gui assets
     py.display.flip()

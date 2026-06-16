@@ -25,6 +25,8 @@ class Button:
             self.AbsolutePos[1] + self.AbsoluteSize[1],
         )  # low y, high y
 
+
+
         mx, my = mouseHit
         # print("checking mouse hit:", mx, my, "bounding x(s) are:", lx, hx)
         if mx < lx or hx < mx:
@@ -32,7 +34,7 @@ class Button:
         elif my < ly or hy < my:
             return False
 
-        print(f"Button {self.Name} clicked", lx, hx, ly, hy, mouseHit)
+        #print(f"Button {self.Name} clicked", lx, hx, ly, hy, mouseHit)
         return True
 
     def render(self, pos, size):

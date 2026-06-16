@@ -1,72 +1,43 @@
-from Classes.Adventurer import Adventurer
-from Modules.Gameloop.UI.Init.MainScreenPage import (
-    StatNameLabel,
-    StatAgeLabel,
-    StatGenderLabel,
-    StatHealthLabel,
-    StatFoodLabel,
-    StatHungerLabel,
-    LocationLabel,
-    EnvironmentImage,
-    NPCNameLabel,
-    NPCDescriptionLabel,
-    NPCPortrait,
-)
+from Modules.Core import InstanceCreator
+from Modules.Gameloop.UI.Init import MainScreenPage
+import Modules.Configs.NPCData as NPCData
 
-Player = Adventurer("Traveler", "Unknown", 25)
-CurrentLocation = "Red Frontier — Outpost Gate"
-CurrentEnvironmentImage = (
-    "Assets\\Images\\Backgrounds\\RedFrontierGamebackground.png"
-)
-
-_statTimer = 0
+SelectedNpcName = None
 
 
-def UpdatePlayerStats():
-    StatNameLabel.Text = Player.Name
-    StatAgeLabel.Text = str(Player.Age)
-    StatGenderLabel.Text = Player.Gender
-    StatHealthLabel.Text = str(int(Player.Health))
-    StatFoodLabel.Text = str(int(Player.Food))
-    StatHungerLabel.Text = str(int(Player.Hunger))
+def DisplayScrollText(text):
+    textlabel = InstanceCreator.createNewInstance("TextLabel")
+    textlabel.Text = text
+    textlabel.Size = [0.9, 0.1]
+    textlabel.Font = "pressstart2p"
+    textlabel.BackgroundTransparency = 1
+    textlabel.Parent = MainScreenPage.MainScroll
+
+    return textlabel
 
 
-def SetEnvironment(location, imagePath=None):
-    global CurrentLocation, CurrentEnvironmentImage
-
-    CurrentLocation = location
-    LocationLabel.Text = location
-
-    if imagePath:
-        CurrentEnvironmentImage = imagePath
-        EnvironmentImage.ImagePath = imagePath
+def ClearNpcFocus():
+    global SelectedNpcName
+    SelectedNpcName = None
+    MainScreenPage.NPCNameLabel.Text = "—"
+    MainScreenPage.NPCRoleLabel.Text = ""
+    MainScreenPage.NPCDescriptionLabel.Text = "No NPC in focus."
+    MainScreenPage.NPCPortrait.ImagePath = ""
 
 
-def SetNPCDetails(name="—", description="Approach an NPC to learn more.", imagePath=""):
-    NPCNameLabel.Text = name
-    NPCDescriptionLabel.Text = description
-    NPCPortrait.ImagePath = imagePath
+def DisplayNpc(npcData):
+    global SelectedNpcName
 
-
-def Tick(deltaTime):
-    global _statTimer
-
-    _statTimer += deltaTime
-    if _statTimer < 2:
+    if not npcData:
+        ClearNpcFocus()
         return
 
-    _statTimer = 0
-
-    Player.Hunger = min(100, Player.Hunger + 1)
-    if Player.Hunger > 60:
-        Player.Food = max(0, Player.Food - 1)
-    if Player.Food < 30:
-        Player.Health = max(0, Player.Health - 1)
-
-    UpdatePlayerStats()
+    SelectedNpcName = npcData.get("DisplayName")
+    MainScreenPage.NPCNameLabel.Text = npcData.get("DisplayName", "Unknown")
+    MainScreenPage.NPCRoleLabel.Text = npcData.get("Role", "")
+    MainScreenPage.NPCDescriptionLabel.Text = npcData.get("Description")
+    MainScreenPage.NPCPortrait.ImagePath = npcData.get("ImagePath", "")
 
 
-def Load():
-    SetEnvironment(CurrentLocation, CurrentEnvironmentImage)
-    SetNPCDetails()
-    UpdatePlayerStats()
+def DisplayNpcByName(name):
+    DisplayNpc(NPCData.GetNpcByName(name))

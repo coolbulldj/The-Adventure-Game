@@ -3,7 +3,7 @@ from Modules.Core.CoreGUI.TextboxHandler import triggerTyping
 HoldTimes = {}
 HeldKeys = []
 
-KeyDelay = 0.05  # How long it takes until the input is registered as a key stroke
+KeyDelay = 0.0  # How long it takes until the input is registered as a key stroke
 KeyRepeat = 0.2  # How often a key stroke is registery again while being held
 
 
@@ -22,7 +22,7 @@ def Tick(dt: float):
     for key, heldTime in HoldTimes.items():
         HoldTimes[key] += dt
 
-        if heldTime > KeyDelay and key not in HeldKeys:
+        if heldTime >= KeyDelay and key not in HeldKeys:
             HeldKeys.append(key)
             HoldTimes[key] -= KeyRepeat
         elif key in HeldKeys:
