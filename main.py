@@ -54,7 +54,7 @@ while Running:
         elif event.type == py.KEYUP:
             InputService.KeyUp(event.key)
     ResetActiveButtons()
-    #reset active buttons
+    # reset active buttons
     InputService.Tick(dt)
 
     # run game logic

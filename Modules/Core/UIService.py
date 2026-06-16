@@ -6,7 +6,13 @@ from Classes.GUIClasses.GuiBase import GuiBase
 from Classes.GUIClasses.NonRendered.UIStructure import UIStructure
 
 # UI Structure Ordering
-StructureOrdering = ["UIAspectRatio", "UIListLayout", "UICorner", "UIStroke"]
+StructureOrdering = [
+    "UIAspectRatio",
+    "UIListLayout",
+    "UIGridLayout",
+    "UICorner",
+    "UIStroke",
+]
 
 
 def _sortByStructure(AssetList):

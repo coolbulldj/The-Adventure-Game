@@ -6,7 +6,9 @@ from Modules.Core.CoreGUI.TextboxHandler import addTextboxAsset, destoryTextboxA
 def is_valid_chr(n):  # basically
     return isinstance(n, int) and 0 <= n <= 0x10FFFF
 
+
 FLASH_INTERVAL = 0.5
+
 
 class Textbox(TextButton):
     def __init__(self):
@@ -19,19 +21,19 @@ class Textbox(TextButton):
         self.Button.MouseButton1Up.Connect(self.startTyping)
         self.Button.MouseButton2Up.Connect(self.startTyping)
         self.Button.ClickOff.Connect(self.stopTyping)
-        self.FlashTimer = time.time() #used to track the flashing | line to display when a textbox is active
-        self.CursorVisible = True #tracks whether the cursor should be visible
-
+        self.FlashTimer = (
+            time.time()
+        )  # used to track the flashing | line to display when a textbox is active
+        self.CursorVisible = True  # tracks whether the cursor should be visible
 
         addTextboxAsset(self)
 
-
     def startTyping(self):
-        #print("starting typing", self.Name)
+        # print("starting typing", self.Name)
         self.IsTyping = True
 
     def stopTyping(self):
-        #print('stop typing', self.Name)
+        # print('stop typing', self.Name)
         self.IsTyping = False
 
     def typing(self, keycode):
@@ -55,7 +57,7 @@ class Textbox(TextButton):
         # print(self.Text + chr(keycode))
         SetText = self.Text + chr(keycode)
         self.Text = SetText
-    
+
     def render(self, screen, screenSize, posOffset):
         realText = self.Text
 

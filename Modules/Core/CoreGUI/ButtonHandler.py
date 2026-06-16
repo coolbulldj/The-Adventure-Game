@@ -3,6 +3,7 @@ from GeneralFunctions import CreateUniqueKeyForMap
 buttons = {}
 active_buttons = []
 
+
 def ActiveButton(key):
     active_buttons.append(key)
 
@@ -13,9 +14,11 @@ def AddButton(button):
     buttons[key] = button
     return key
 
+
 def ResetActiveButtons():
     global active_buttons
     active_buttons = []
+
 
 def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int):
     global active_buttons
@@ -26,7 +29,7 @@ def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int):
         if not button.check_mouse_hit(mousePositon):
             button.ClickOff._FireEvent()
             continue
-    
+
         if MouseUp:
             if MouseCode == 1:
                 button.MouseButton1Up._FireEvent()  # Left Click
@@ -45,5 +48,5 @@ def CheckButtons(mousePositon, MouseUp: bool, MouseCode: int):
                 # v.MouseButton1Up._FireEvent()
                 pass
             elif MouseCode == 3:
-                #print("right click")
+                # print("right click")
                 button.MouseButton2Down._FireEvent()  # Right Click

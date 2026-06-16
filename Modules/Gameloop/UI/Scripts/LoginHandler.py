@@ -1,8 +1,11 @@
-from Modules.Gameloop.UI.Init.LoginPage import LoginScreen, LoginB, UsernameInput, PasswordInput
+from Modules.Gameloop.UI.Init.LoginPage import (
+    LoginScreen,
+    LoginB,
+    UsernameInput,
+    PasswordInput,
+)
 
 LoginState = "Login"  # 'Login' or 'Create'
-
-
 
 
 def SetLoginState(state):
@@ -15,10 +18,13 @@ def SetLoginState(state):
         LoginB.Text = "Create Acccount"
     else:
         print(f"Attempted to set invalid login state:{state}")
-    #reset textboxes
+    # reset textboxes
     UsernameInput.Text = ""
-    PasswordInput.Text = "" 
+    PasswordInput.Text = ""
+
 
 def GetAccountDetails():
-    print(f"Creating new account with username:{UsernameInput.Text} & password:{PasswordInput.Text}")
+    print(
+        f"Creating new account with username:{UsernameInput.Text} & password:{PasswordInput.Text}"
+    )
     return UsernameInput.Text, PasswordInput.Text

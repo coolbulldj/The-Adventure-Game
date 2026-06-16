@@ -33,12 +33,11 @@ def Load(accountList):
         card = MakeAccountCard(Username, count)
         SelectB = card.FindFirstChild("SelectB")
         DeleteB = card.FindFirstChild("DeleteB")
+
         def test():
-            print('select button working1')
+            print("select button working1")
+
         SelectB.Button.MouseButton1Up.Connect(test)
-
-
 
     NewAccountB.Button.MouseButton1Up.Connect(new)
     LoginB.Button.MouseButton1Up.Connect(CreateNewAccount)
-    

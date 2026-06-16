@@ -2,7 +2,12 @@ from Modules.Core.CoreGUI.GUIElementsList import addGuiAsset, destoryGuiAsset, G
 from Modules.Core.ErrorHandler import ThrowError, ThrowWarning
 
 # UI Structure Ordering
-StructureOrdering = ["UIAspectRatio", "UIListLayout", "UICorner", "UIStroke"]
+StructureOrdering = [
+    "UIAspectRatio",
+    "UIListLayout",
+    "UIGridLayoutUICorner",
+    "UIStroke",
+]
 
 
 def _sortByStructure(AssetList):
@@ -41,7 +46,7 @@ class GuiBase:
         self.BackgroundTransparency = 0
         self.zIndex = 1
         self.Visible = True
-        self.BorderRadius = 0 #this is edit by the UI corner class.
+        self.BorderRadius = 0  # this is edit by the UI corner class.
 
         self.Parent = "game"
         self.Name = "UnknownName"
@@ -158,6 +163,7 @@ class GuiBase:
                 + positionOffset[1]
             ),
         ]
+
     def FindFirstChild(self, QueryName, returnKey: bool = False):
         for key in self.Children:
             child = GuiAssets[key]

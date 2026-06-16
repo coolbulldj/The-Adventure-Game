@@ -17,5 +17,5 @@ class TextButton(TextLabel):
 
     def render(self, *args):
         super().render(*args)
-        #print(self.AbsolutePos, self.AbsoluteSize, self.Name)
+        # print(self.AbsolutePos, self.AbsoluteSize, self.Name)
         self.Button.render(self.AbsolutePos, self.AbsoluteSize)

@@ -10,8 +10,11 @@ from Modules.Gameloop.UI.Init.AccountSelectionPage import (
     NewAccountB,
 )
 from Modules.Gameloop.UI.Init.StartMenuPage import MenuFrame, PlayB, SettingsB, CreditsB
+from Modules.Gameloop.UI.Init.MainScreenPage import MainScreen
 
 # Load functions
-from Modules.Gameloop.UI.Scripts.AccountHandler import Load as AHLoad
+# from Modules.Gameloop.UI.Scripts.AccountHandler import Load as AHLoad
 
-AHLoad([])
+# AHLoad([])
+
+MainScreen.Visible = True

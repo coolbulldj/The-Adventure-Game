@@ -31,7 +31,7 @@ class Button:
             return False
         elif my < ly or hy < my:
             return False
-        
+
         print(f"Button {self.Name} clicked", lx, hx, ly, hy, mouseHit)
         return True
 
@@ -40,6 +40,3 @@ class Button:
         self.AbsoluteSize = size
         ActiveButton(self.ButtonKey)
         # print(self.LastFrame)
-        if self.Name != "PlayB":
-            return
-        print(f"rendering button: {self.Name}")
